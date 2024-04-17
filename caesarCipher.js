@@ -9,9 +9,12 @@ const baselineAlpha = alphabet.map((letter, value) => {
     return item;
 })
 
-let stringToNum = [];
+function lowerCase (string){
+    return string.toLowerCase();
+};
 
 //Utiltiy: convert original string from letters to numbers
+let stringToNum = [];
 function numbers (phrase){
     stringToNum = [];
     for (let i = 0; i < phrase.length; i++){
@@ -46,10 +49,11 @@ function cipher (numbers){
 }
 
 function ceasarCipher (phrase, factorRate){
-   let start = numbers(phrase);
-   shift(factorRate);
-   let ciphered = cipher(start);
-   return ciphered.join('');
+    let string = lowerCase(phrase);
+    let start = numbers(string);
+    shift(factorRate);
+    let ciphered = cipher(start);
+    return ciphered.join('');
 }
 /*
 shift(28);
@@ -58,7 +62,8 @@ console.log(numbers('danger'));
 */
 
 /*
-console.log(ceasarCipher ('run', 2));
-console.log(ceasarCipher('low', 2));
+console.log(ceasarCipher ('Run', 2));
+console.log(ceasarCipher('loW', 2));
 */
+
 module.exports = ceasarCipher
