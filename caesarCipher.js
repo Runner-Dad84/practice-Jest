@@ -14,13 +14,19 @@ function lowerCase (string){
 };
 
 //Utiltiy: convert original string from letters to numbers
+//if a character is not a number return character as string
 let stringToNum = [];
 function numbers (phrase){
     stringToNum = [];
     for (let i = 0; i < phrase.length; i++){
-
-       let nums = baselineAlpha.find((element) => element[0] === phrase[i]);
-       stringToNum.push(nums[1]);
+    
+      let nums;
+      if (baselineAlpha.find((element) => element[0] === phrase[i])){
+        nums = baselineAlpha.find((element) => element[0] === phrase[i])
+        stringToNum.push(nums[1]);
+      } else {
+        stringToNum.push(phrase[i]);
+      }
     }
     return stringToNum;
 }
@@ -36,13 +42,18 @@ shiftedAlpha = alphabet.map((letter, value) => {
 })}
 
 //Take stringToNum and look up letters on the shiftAlpha, return new phrase
-
+//NEED to account for string characters!!
 function cipher (numbers){
     let cipherPhrase = [];
     for (let i = 0; i < numbers.length; i++){
-
-       let found = shiftedAlpha.find((element) => element[1] === numbers[i]);
-       cipherPhrase.push(found[0]);
+        let found;
+        if (shiftedAlpha.find((element) => element[1] === numbers[i])) {
+        found = shiftedAlpha.find((element) => element[1] === numbers[i]);
+        cipherPhrase.push(found[0]);
+        } else {
+            cipherPhrase.push(numbers[i]);
+        }
+       
     }
     
     return cipherPhrase;
@@ -56,14 +67,15 @@ function ceasarCipher (phrase, factorRate){
     return ciphered.join('');
 }
 /*
-shift(28);
+
 console.log(shiftedAlpha);
-console.log(numbers('danger'));
+console.log(ceasarCipher ('Run!!', 2));
+*/
+/*
+console.log(baselineAlpha);
+shift(5)
+console.log(shiftedAlpha);
 */
 
-/*
-console.log(ceasarCipher ('Run', 2));
-console.log(ceasarCipher('loW', 2));
-*/
 
 module.exports = ceasarCipher
