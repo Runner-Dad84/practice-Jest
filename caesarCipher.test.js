@@ -19,3 +19,7 @@ test ('run!!', () => {
 test ('52 ray st.', () => {
     expect(ceasarCipher('52 ray st.', 5)).toBe('52 mvt no.')
 })
+
+test ('No shift', () => {
+    expect(ceasarCipher('no shift!', 0)).toBe('no shift!')
+})
